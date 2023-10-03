@@ -12,9 +12,9 @@ enum UserRole: int {
     {
         return match($this)
         {
-            UserRole::ADMIN => 'Admin',
-            UserRole::CUSTOMER => 'Customer',
-            UserRole::SELLER => 'Seller',
+            $this::ADMIN => 'Admin',
+            $this::CUSTOMER => 'Customer',
+            $this::SELLER => 'Seller',
         };
     }
 }

@@ -1,10 +1,8 @@
 <?php
-
-use App\Http\Controllers\Dashboard\Admin\DashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,8 +15,10 @@ Route::middleware('guest')->group(function(){
     Route::post('register',[RegisterController::class, 'signup'])->name('register');
 });
 
-Route::group(['prefix'=> 'admin'], function(){
-    Route::get('logout',[LoginController::class,'logout'])->name('logout');
-    Route::get('dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
-});
+Route::middleware('auth')->group(function(){
+    Route::get('logout',[LoginController::class,'logout'])->name('logout')->middleware('auth');
 
+    Route::group(['prefix'=> 'admin'], function(){
+        Route::get('dashboard',[DashboardController::class, 'index'])->name('admin.dashboard');
+    });
+});

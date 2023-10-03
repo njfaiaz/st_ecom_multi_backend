@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -16,29 +16,24 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $credentials = $request->validate([
             'email' => 'required|email|exists:users,email',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
 
-        if ($validator->fails()){
-            return response()->json([
-                "status" => false,
-                "errors" => $validator->errors()
-            ]);
+        $user = User::where('email', $credentials['email'])->first();
+
+        if($user->role != 1 )
+        {
+            return redirect()->back()->withInput()->with('error', 'Please try with different email!');
         }
 
-        if (Auth::attempt($request->only(["email", "password"]))) {
-            return response()->json([
-                "status" => true,
-                "redirect" => route("admin.dashboard")
-            ]);
-        } else {
-            return response()->json([
-                "status" => false,
-                "errors" => ["Invalid User Or Password"]
-            ]);
+        if (!Auth::attempt( $credentials))
+        {
+            return redirect()->back()->withInput()->with('error', 'Incorrect Password');
         }
+
+        return redirect()->route('admin.dashboard');
     }
 
     public function logout()

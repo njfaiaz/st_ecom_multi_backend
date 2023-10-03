@@ -21,32 +21,44 @@
                             @csrf
 
                             <div class=" mb-3">
-                                <label for="phone" class="form-label">Name</label>
-                                <input type="text" id="name" name="name" class="form-control rounded-0" placeholder="Name">
+                                <label for="phone" class="form-label">First Name</label>
+                                <input type="text" id="first_name" name="first_name" class="form-control rounded-2" placeholder="First Name">
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class=" mb-3">
+                                <label for="phone" class="form-label">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" class="form-control rounded-2" placeholder="Last Name">
+                                <div class="invalid-feedback"></div>
+                            </div>
+
+                            <div class=" mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" id="phone" name="phone" class="form-control rounded-2" placeholder="Phone Number">
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class=" mb-3">
                                 <label for="phone" class="form-label">Email</label>
-                                <input type="email" id="email" name="email" class="form-control rounded-0" placeholder="E-mail">
+                                <input type="email" id="email" name="email" class="form-control rounded-2" placeholder="E-mail">
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class=" mb-3">
                                 <label for="phone" class="form-label">Password</label>
-                                <input type="password" id="password" name="password" class="form-control rounded-0" placeholder="Password">
+                                <input type="password" id="password" name="password" class="form-control rounded-2" placeholder="Password">
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div class=" mb-3">
                                 <label for="phone" class="form-label">Confirm Password</label>
-                                <input type="password" id="confirm_password" name="confirm_password" class="form-control rounded-0" placeholder="Confirm Password">
+                                <input type="password" id="confirm_password" name="confirm_password" class="form-control rounded-2" placeholder="Confirm Password">
                                 <div class="invalid-feedback"></div>
                             </div>
 
                             <div>
                                 <div class="d-grid">
-                                    <input type="submit" value="Register" id="register_btn" class="btn btn-dark rounded-0">
+                                    <input type="submit" value="Register" id="register_btn" class="btn btn-dark rounded-2">
                                 </div>
                             </div>
 
@@ -74,7 +86,9 @@
                         dataType: 'json',
                         success: function(res){
                             if(res.status == 400){
-                                showError('name', res.messages.name);
+                                showError('first_name', res.messages.first_name);
+                                showError('last_name', res.messages.last_name);
+                                showError('phone', res.messages.phone);
                                 showError('email', res.messages.email);
                                 showError('password', res.messages.password);
                                 showError('confirm_password', res.messages.confirm_password);

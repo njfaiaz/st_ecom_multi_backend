@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\User;
 
 class RegisterController extends Controller
@@ -17,7 +18,9 @@ class RegisterController extends Controller
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|max:50',
+            'first_name' => 'required|max:50',
+            'last_name' => 'required|max:50',
+            'phone' => 'required|max:20',
             'email' => 'required|email|unique:users|max:100',
             'password' => 'required|min:6|max:50',
             'confirm_password' => 'required|same:password'
@@ -33,11 +36,15 @@ class RegisterController extends Controller
             ]);
         }
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $username = Str::slug($request->first_name.'.'.$request->last_name, '-');
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'username' => $username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password)
+        ]);
 
         return response()->json([
             'status' => 200,
