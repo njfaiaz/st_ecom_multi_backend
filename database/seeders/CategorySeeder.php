@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
 
 class CategorySeeder extends Seeder
 {
@@ -16,8 +16,8 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categoryPath = 'images/categories/';
-        $categories = ['Men', 'Women', 'Kids', 'Clothing', 'Electronic', 'Furniture', 'Phone'];
-        $subcategories = ['Pant', 'Shirt', 'Watch', 'Bag', 'saree', 'Shoes', 'Samsung', 'Sony', 'Apple', 'Xiaomi'];
+        $categories = ['Men', 'Women', 'Kids', 'Clothing', 'Electronic Accessories', 'Furniture', 'Phone', 'Glossary', 'Sport'];
+        $subcategories = ['Pant', 'Shirt', 'Watch', 'Bag', 'Shoes', 'Samsung', 'Sony', 'Apple', 'Xiaomi'];
 
         foreach($categories as $categoryName) {
 

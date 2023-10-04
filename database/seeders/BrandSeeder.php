@@ -1,10 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-
-use App\Models\Brand;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Brand;
 
 class BrandSeeder extends Seeder
 {
@@ -15,11 +14,11 @@ class BrandSeeder extends Seeder
 
     public function run()
     {
-        $brands = ['Samsung', 'Sony', 'Apple', 'Easy', 'Artisan', 'Olloy'];
-        $brandPath = 'images/categories/';
-        foreach($brands as $brandName) {
+        $brands = ['Nike', 'Sony', 'Apple', 'Easy', 'Anjan’s', 'Dorjibari', 'Yellow', 'Richman', 'Apex', 'Sailor' ,'Freeland', 'Grameencheck', 'RFL', 'Walton', 'Ecstasy'];
+        $brandPath = 'images/brands/';
 
-            $category = Brand::create([
+        foreach($brands as $brandName) {
+            Brand::create([
                 'name' => $brandName,
                 'slug' => $this->makeSlug($brandName),
                 'image' => $brandPath . strtolower($brandName) . '.png'

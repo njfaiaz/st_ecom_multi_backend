@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use App\Enums\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,5 +62,10 @@ class User extends Authenticatable
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class);
+    }
+
+    public function scopeCustomer($query)
+    {
+        return $query->where('role', UserRole::CUSTOMER->value);
     }
 }

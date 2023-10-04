@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -20,5 +22,14 @@ Route::middleware('auth')->group(function(){
 
     Route::group(['prefix'=> 'admin'], function(){
         Route::get('dashboard',[DashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::prefix('brand')->group(function() {
+            Route::get('/', [BrandController::class, 'index'])->name('brand');
+            Route::get('add', [BrandController::class, 'add'])->name('brand.add');
+            Route::post('store', [BrandController::class, 'store'])->name('brand.store');
+            Route::get('{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+            Route::post('{id}/update', [BrandController::class, 'update'])->name('brand.update');
+            Route::get('{id}/delete', [BrandController::class, 'delete'])->name('brand.delete');
+        });
     });
 });

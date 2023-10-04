@@ -8,3 +8,5 @@
 <script src="{{ asset('dashboard/assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/theme.min.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/feather.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/sweetalert2.all.min.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/code.js') }}"></script>

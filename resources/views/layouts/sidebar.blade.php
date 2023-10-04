@@ -16,22 +16,22 @@
             <!-- Nav item -->
 
             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#categoryMenu" aria-expanded="false" aria-controls="navPages">
+                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#brandMenu" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"
                     class="nav-icon icon-xs me-2">
-                </i> Category
+                </i> Brand
                 </a>
-                <div id="categoryMenu" class="collapse" data-bs-parent="#sideNavbar">
+                <div id="brandMenu" class="collapse" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">
-                            Add Category
+                            <a class="nav-link " href="{{ route('brand.add') }}">
+                            Add Brand
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link has-arrow"  href="#" >
-                            All Category
+                            <a class="nav-link has-arrow"  href="{{ route('brand') }}" >
+                            All Brand
                             </a>
                         </li>
                     </ul>

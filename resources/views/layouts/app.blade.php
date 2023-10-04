@@ -10,8 +10,8 @@
         <link href="{{ asset('dashboard/assets/libs/dropzone/dist/dropzone.css') }}"  rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('dashboard/assets/css/theme.css') }}">
         {{-- admin sweet alert ---------------------------- --}}
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
+        <link rel="stylesheet" href="{{ asset('dashboard/assets/css/sweetalert2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dashboard/assets/css/toastr.css') }}">
         <title>@yield('title')</title>
     </head>
 
@@ -40,8 +40,7 @@
         @stack('footer_scripts')
 
         {{-- Admin sweet alert toast ----------------------------------------------------------- --}}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+        <script src="asset('dashboard/assets/js/toastr.min.js')"></script>
         <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
@@ -62,10 +61,6 @@
             @endif
         </script>
 
-
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="{{ asset('dashboard/assets/js/code.js') }}"></script>
         {{-- Admin sweet alert toast ----------------------------------------------------------- --}}
 
 

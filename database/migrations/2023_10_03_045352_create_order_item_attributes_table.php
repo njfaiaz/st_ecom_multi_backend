@@ -21,6 +21,9 @@ return new class extends Migration
             $table->foreignIdFor(OrderItem::class);
             $table->foreignIdFor(Product::class);
             $table->foreignIdFor(ProductAttribute::class);
+            $table->string('name');
+            $table->string('value');
+            $table->integer('additional_price');
             $table->timestamps();
         });
     }
