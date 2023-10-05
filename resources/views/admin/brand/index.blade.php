@@ -3,7 +3,7 @@
 @section('content')
 
 <h4 class="mt-3">Brands</h4>
-<div class="row my-3">
+<div class="row my-3 my-3">
     @foreach ($brands as $brand)
     <div class="col-md-3">
         <div class="card">

@@ -39,9 +39,6 @@ class UserSeeder extends Seeder
 
         $this->saveAddresses($customer);
 
-        //User::factory(100)->create();
-
-
         $sellers = ['Samsung', 'Walton', 'Unilever', 'Pureit', 'Symphony', 'Pran', 'Nestle', 'Teer', 'Delphi', 'Happy Mart', 'Nokia', 'ACI', 'Vivo', 'e-Fashion', 'InFistyle', 'Proud', 'Apple'];
 
         foreach($sellers as $seller) {

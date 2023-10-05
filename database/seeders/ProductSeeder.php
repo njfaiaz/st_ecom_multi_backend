@@ -43,7 +43,7 @@ class ProductSeeder extends Seeder
                 'sale_total' => rand(0, 99),
                 'is_active' => true,
                 'rating' => rand(1, 5),
-                'image' => 'products/' . rand(1, 59) . '.png'
+                'image' => 'products/' . rand(1, 63) . '.png'
             ]);
 
             $this->saveAttributes($product);
@@ -56,7 +56,7 @@ class ProductSeeder extends Seeder
         for ($i = 1; $i < 30; $i++) {
             ProductImage::create([
                 'product_id' => $product->id,
-                'image' => 'products/' . rand(1, 50) . '.png'
+                'image' => 'products/' . rand(1, 63) . '.png'
             ]);
         }
     }
