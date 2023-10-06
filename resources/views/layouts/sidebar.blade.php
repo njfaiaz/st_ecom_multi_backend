@@ -20,6 +20,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('category') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Category
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#subcatMenu" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"

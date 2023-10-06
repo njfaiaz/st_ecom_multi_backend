@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
@@ -16,8 +16,8 @@ class BrandController extends Controller
         return view('admin.brand.index',compact('brands'));
     }
 
-    public function store(Request $request){
-
+    public function store(Request $request)
+    {
         $image = $request->file('image');
         $name_gen = time().'.'.$image->getClientOriginalExtension();
         $save_url = 'images/brands/'.$name_gen;
@@ -42,8 +42,8 @@ class BrandController extends Controller
         return ('brand');
     }
 
-    public function update(Request $request){
-
+    public function update(Request $request)
+    {
         $brand_id = $request->brand_id;
         $brand = Brand::findOrFail($brand_id);
 

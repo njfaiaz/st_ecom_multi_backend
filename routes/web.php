@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,15 @@ Route::middleware('auth')->group(function(){
             Route::get('{brand}/edit', [BrandController::class, 'edit'])->name('brand.edit');
             Route::post('update', [BrandController::class, 'update'])->name('brand.update');
             Route::get('{brand}/delete', [BrandController::class, 'delete'])->name('brand.delete');
+        });
+
+        Route::prefix('category')->group(function() {
+            Route::get('/', [CategoryController::class, 'index'])->name('category');
+            Route::get('add', [CategoryController::class, 'add'])->name('category.add');
+            Route::post('store', [CategoryController::class, 'store'])->name('category.store');
+            Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+            Route::post('update', [CategoryController::class, 'update'])->name('category.update');
+            Route::get('{category}/delete', [CategoryController::class, 'delete'])->name('category.delete');
         });
     });
 });
