@@ -11,7 +11,7 @@ class BrandController extends Controller
 {
     public function index()
     {
-        $brands = Brand::latest()->paginate(20);
+        $brands = Brand::where('is_active','1')->latest()->paginate(20);
 
         return view('admin.brand.index',compact('brands'));
     }
@@ -23,7 +23,7 @@ class BrandController extends Controller
         $save_url = 'images/brands/'.$name_gen;
         $image->move(public_path('images/brands'), $name_gen);
 
-        Brand::insert([
+        Brand::create([
             'name' => $request->name,
             'slug' => strtolower(str_replace(' ', '-',$request->name)),
             'image' => $save_url,
