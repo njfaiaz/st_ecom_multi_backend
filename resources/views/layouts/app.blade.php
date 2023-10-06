@@ -37,10 +37,8 @@
 
         @include('layouts.footer')
 
-        @stack('footer_scripts')
-
         {{-- Admin sweet alert toast ----------------------------------------------------------- --}}
-        <script src="asset('dashboard/assets/js/toastr.min.js')"></script>
+
         <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
@@ -64,6 +62,7 @@
         {{-- Admin sweet alert toast ----------------------------------------------------------- --}}
 
 
+        @stack('footer_scripts')
     </body>
 </html>
 

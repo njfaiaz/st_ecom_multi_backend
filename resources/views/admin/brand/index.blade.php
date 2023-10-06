@@ -2,111 +2,120 @@
 @section('title', 'All Brand')
 @section('content')
 
-<h4 class="mt-3">Brands</h4>
-<div class="row my-3 my-3">
+<div class="card-header d-flex justify-content-between mt-3 mx-2">
+    <h4>Brands</h4>
+    <div>
+        <a href="{{ route('brand.add') }}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#brandCreateModal">Add Brand</a>
+    </div>
+</div>
+
+<div class="d-flex flex-wrap mb-5">
     @foreach ($brands as $brand)
-    <div class="col-md-3">
-        <div class="card">
-            <img src="{{ asset( $brand->image ) }}" alt="image">
+        <div class="card m-2" style="width: 160px">
+            <img src="{{ asset( $brand->image ) }}" alt="image" style="height: 120px;">
             <div class="card-body">
-                <h5>{{ $brand->name }}</h5>
+                <h5 class="fw-bold">{{ $brand->name }}</h5>
+                <div class="d-flex justify-content-between">
+                    <a href="javascript:void(0)"
+                        data-id="{{ $brand->id }}"
+                        data-img="{{ $brand->image }}"
+                        data-name="{{ $brand->name }}"
+                        data-bs-toggle="modal"
+                        data-bs-target="#brandEditModal"
+                        class="link-primary editBtn">
+                    Edit</a>
+                    <a href="{{ route('brand.delete', $brand->id) }}" id="delete" class="link-danger">Delete</a>
+                </div>
             </div>
         </div>
-    </div>
     @endforeach
 </div>
-
-
-<div class="card my-3">
-    <div class="card-header d-flex justify-content-between">
-        <h4>Brands</h4>
-        <div>
-            <a href="{{ route('brand.add') }}" class="btn btn-primary">Add Brand</a>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        <table class="table">
-            <thead class="bg-light">
-                <tr class="text-white">
-                    <th scope="col">SI</th>
-                    <th scope="col">Brand Name</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($brands as $key => $brand)
-                <tr>
-                    <td>{{ $key+1 }}</td>
-                    <td>{{ $brand->name }}</td>
-                    <td>
-                        <img src="{{ asset( $brand->image ) }}" style="width: 70px; height:40x;" alt="image">
-                    </td>
-                    <td>{{ $brand->is_active }}</td>
-                    <td>
-                        <a href="{{ route('brand.edit',$brand->id) }}" class="btn btn-info text-white btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <i data-feather="edit" class="nav-icon icon-xs"></i>
-                        </a>
-                        <a href="{{ route('brand.delete',$brand->id) }}" id="delete" class="btn btn-danger btn-sm">
-                            <i data-feather="trash-2" class="nav-icon icon-xs"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+    {{ $brands->links() }}
 </div>
 
-{{ $brands->links() }}
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Brand Edit</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-            <div class="card-body">
-                <form id="basic-form" method="post" action="{{ route('brand.update',$brand->id) }}" enctype="multipart/form-data" >
-                    @csrf
-
-                    <input type="hidden" name="id" value="{{ $brand->id }}">
-                    <input type="hidden" name="old_image" value="{{ $brand->image }}">
-
-                    <div class="mb-3">
-                        <label for="name" class="col-form-label">Brand Name :</label>
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Brand Name" value="{{ $brand->name }}"/>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="image" class="col-form-label">Brand Image :</label>
-                        <div class="form-group">
-                            <input type="file" name="image" class="form-control" placeholder="Product image " id="image"/>
-                        </div><br>
+<div class="modal fade" id="brandCreateModal" tabindex="-1" aria-labelledby="brandCreateModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Brand Add</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form id="myForm" method="post" action="{{ route('brand.store') }}" enctype="multipart/form-data" >
+                        @csrf
 
                         <div class="mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0"></h6>
-                                <img src="{{ asset($brand->image)   }}"
-                                    alt="Admin" style="width: 100px" height="100px" id="showImage">
+                            <label for="name" class="col-form-label">Brand Name :</label>
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Brand Name" />
                             </div>
                         </div>
 
-                    </div>
-                    <input type="submit" class="btn btn-primary px-4 submit" value="Brand Update" />
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </form>
+                        <div class="mb-3">
+                            <label for="image" class="col-form-label">Brand Image:</label>
+                            <div class="form-group">
+                                <input type="file" name="image" class="form-control" id="image"/>
+                            </div><br>
+
+                            <div class="mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0"></h6>
+                                    <img src="{{ url('images/default.png') }}"
+                                        alt="Admin" style="width: 100px" height="100px" id="showImage">
+                                </div>
+                            </div>
+
+                        </div>
+                        <input type="submit" class="btn btn-primary px-4 submit" value="Brand Add" />
+                    </form>
+                </div>
             </div>
-      </div>
+        </div>
     </div>
-  </div>
+</div>
+
+
+<div class="modal fade" id="brandEditModal" tabindex="-1" aria-labelledby="brandEditModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Brand Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <form method="post" action="{{ route('brand.update') }}" enctype="multipart/form-data" >
+                        @csrf
+
+                        <input type="hidden" name="brand_id" id="brand_id">
+
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Brand Name :</label>
+                            <div class="form-group">
+                                <input type="text" id="brand_name" name="name" class="form-control" placeholder="Brand Name"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="col-form-label">Brand Image :</label>
+                            <div class="form-group">
+                                <input type="file" name="image" class="form-control" placeholder="Product image " id="image"/>
+                            </div><br>
+                            <div class="mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0"></h6>
+                                    <img src="" style="width: 100px" height="100px" class="img-thumbnail" id="brand_image">
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-primary px-4 submit" value="Brand Update" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @push('footer_scripts')
@@ -122,6 +131,50 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required : true,
+                },
+                image: {
+                    required : true,
+                },
+            },
+            messages :{
+                name: {
+                    required : 'Please Enter Brand Name',
+                },
+                image: {
+                    required : 'Please Enter Brand Image',
+                },
+            },
+            errorElement : 'span',
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+
+    $('.editBtn').on('click', function(){
+        var id = $(this).data('id');
+        var name = $(this).data('name');
+        var image = $(this).data('img');
+        $('#brand_id').val(id);
+        $('#brand_name').val(name);
+        $('#brand_image').attr('src', '/'+image);
+    });
+</script>
 @endpush
 
 @endsection
+

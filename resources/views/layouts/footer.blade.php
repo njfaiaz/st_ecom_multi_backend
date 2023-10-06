@@ -10,3 +10,4 @@
 <script src="{{ asset('dashboard/assets/js/feather.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/sweetalert2.all.min.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/code.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/toastr.min.js') }}"></script>
