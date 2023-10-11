@@ -31,9 +31,9 @@ return new class extends Migration
             $table->integer('regular_price');
             $table->integer('sale_price');
             $table->integer('stock_in');
-            $table->integer('stock_out');
-            $table->integer('sale_total');
-            $table->integer('rating');
+            $table->integer('stock_out')->default(0);
+            $table->integer('sale_total')->default(0);
+            $table->integer('rating')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

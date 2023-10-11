@@ -50,4 +50,30 @@ class Product extends Model
     {
         return $this->hasOne(Wishlist::class);
     }
+
+    public function formatAttributes($attributes)
+    {
+        $attribute_list = [];
+
+        if(!empty($attributes)) {
+            foreach($attributes as $key => $attribute){
+                $attribute_list[$attribute->name][$key] = array(
+                    'id' => $attribute->id,
+                    'value' => $attribute->value,
+                    'additional_price' => $attribute->additional_price
+                );
+            }
+        }
+
+        return $attribute_list;
+    }
+
+    public function getDiscountPercentageAttribute()
+    {
+        $price = $this->attributes['regular_price'];
+        $amount = $price - $this->attributes['sale_price'];
+        $discount = ($amount / $price) * 100;
+
+        return round($discount);
+    }
 }

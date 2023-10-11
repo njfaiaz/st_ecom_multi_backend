@@ -5,7 +5,7 @@
 <div class="card-header d-flex justify-content-between mt-3 mx-2">
     <h4>Brands</h4>
     <div>
-        <a href="{{ route('brand.add') }}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#brandCreateModal">Add Brand</a>
+        <a href="{{ route('brand.create') }}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#brandCreateModal">Add Brand</a>
     </div>
 </div>
 

@@ -88,16 +88,25 @@ class BrandController extends Controller
 
     public function delete(Brand $brand)
     {
-        $img = $brand->image;
-        unlink($img);
+        $brand->Update(['is_active' => 0]);
 
-        $brand->delete();
-
-        $notification = array(
-            'message' => 'Brand Delete Successfully',
-            'alert-type' => 'success'
+        $notification=array(
+            'message'=>'Product Delete Successfully ',
+            'alert-type'=>'success'
         );
+        return Redirect()->back()->with($notification);
 
-        return redirect()->back()->with($notification);
+
+        // $img = $brand->image;
+        // unlink($img);
+
+        // $brand->delete();
+
+        // $notification = array(
+        //     'message' => 'Brand Delete Successfully',
+        //     'alert-type' => 'success'
+        // );
+
+        // return redirect()->back()->with($notification);
     }
 }

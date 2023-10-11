@@ -12,7 +12,7 @@ class SubcategoryController extends Controller
 {
     public function index()
     {
-        $subcategories = Subcategory::latest()->paginate(20);
+        $subcategories = Subcategory::where('is_active','1')->latest()->paginate(20);
         $categories = Category::orderBy('name','ASC')->get();
 
         return view('admin.subcategory.index',compact('subcategories','categories'));
@@ -92,17 +92,13 @@ class SubcategoryController extends Controller
 
     public function delete(Subcategory $subcategory)
     {
-        $img = $subcategory->image;
-        unlink($img);
+        $subcategory->Update(['is_active' => 0]);
 
-        $subcategory->delete();
-
-        $notification = array(
-            'message' => 'Subcategory Delete Successfully',
-            'alert-type' => 'success'
+        $notification=array(
+            'message'=>'Product Delete Successfully ',
+            'alert-type'=>'success'
         );
-
-        return redirect()->back()->with($notification);
+        return Redirect()->back()->with($notification);
     }
 
 }

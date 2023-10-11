@@ -5,7 +5,7 @@
 <div class="card-header d-flex justify-content-between mt-3 mx-2">
     <h4>Categories</h4>
     <div>
-        <a href="{{ route('subcategory.add') }}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#subcategoryCreateModal">Add Subcategory</a>
+        <a href="{{ route('subcategory.create') }}" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#subcategoryCreateModal">Add Subcategory</a>
     </div>
 </div>
 

@@ -59,6 +59,7 @@ class User extends Authenticatable
         return $this->hasOne(Shop::class);
     }
 
+
     public function wishlists()
     {
         return $this->hasMany(Wishlist::class);
@@ -67,5 +68,9 @@ class User extends Authenticatable
     public function scopeCustomer($query)
     {
         return $query->where('role', UserRole::CUSTOMER->value);
+    }
+    public function getFullNameAttribute()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
 }

@@ -13,7 +13,8 @@ class ShopSeeder extends Seeder
     public function run()
     {
         $cities = City::pluck('id')->toArray();
-        $imagePath = 'images/shop/';
+        $username = ['Nike', 'Sony', 'Apple', 'Easy', 'Anjan’s', 'Dorjibari', 'Yellow', 'Richman', 'Apex', 'Sailor' ,'Freeland', 'Grameencheck', 'RFL', 'Walton', 'Ecstasy'];
+        $imagePath = 'images/shops/';
         $sellers = User::where('role', UserRole::SELLER->value)->get();
 
         foreach($sellers as $seller) {
@@ -22,8 +23,10 @@ class ShopSeeder extends Seeder
                 'user_id' => $seller->id,
                 'phone' => $seller->phone,
                 'address' => fake()->address(),
+                'username' => $username[array_rand($username)]. ' '.'Bangladesh',
                 'delivery_fee_inside' =>50,
                 'delivery_fee_outside' => 100,
+                'rating' => rand(1, 5),
                 'is_active' => true,
                 'image' => $imagePath.$seller->username.'.png',
                 'cover_image' => $imagePath.$seller->username.'_cover.png',

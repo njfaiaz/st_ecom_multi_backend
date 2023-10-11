@@ -88,16 +88,12 @@ class CategoryController extends Controller
 
     public function delete(Category $category)
     {
-        $img = $category->image;
-        unlink($img);
+        $category->Update(['is_active' => 0]);
 
-        $category->delete();
-
-        $notification = array(
-            'message' => 'Category Delete Successfully',
-            'alert-type' => 'success'
+        $notification=array(
+            'message'=>'Product Delete Successfully ',
+            'alert-type'=>'success'
         );
-
-        return redirect()->back()->with($notification);
+        return Redirect()->back()->with($notification);
     }
 }

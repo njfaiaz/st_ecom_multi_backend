@@ -24,23 +24,48 @@ $(function(){
   });
 
   $(function(){
-    $(document).on('click','#inactive',function(e){
+    $(document).on('click','#block',function(e){
         e.preventDefault();
         var link = $(this).attr("href");
             Swal.fire({
             title: 'Are you sure?',
-            text: "Inactive This Data?",
+            text: "Block This User?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Inactive it!'
+            confirmButtonText: 'Yes, Block it!'
             }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link
                 Swal.fire(
-                'Inactive!',
-                'Your file has been Inactive.',
+                'Blocked!',
+                'User has been Blocked.',
+                'success'
+                )
+            }
+        })
+    });
+  });
+
+  $(function(){
+    $(document).on('click','#unblock',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "Unblock This User?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Unblock it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link
+                Swal.fire(
+                'Unblock!',
+                'User has been Active.',
                 'success'
                 )
             }

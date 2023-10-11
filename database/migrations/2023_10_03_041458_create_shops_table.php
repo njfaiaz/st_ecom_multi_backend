@@ -20,9 +20,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(City::class);
             $table->text('address');
+            $table->text('username');
             $table->string('phone')->unique();
             $table->string('image')->nullable();
             $table->string('cover_image')->nullable();
+            $table->integer('rating')->nullable();
             $table->integer('delivery_fee_inside')->nullable();
             $table->integer('delivery_fee_outside')->nullable();
             $table->boolean('is_active')->default(true);

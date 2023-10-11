@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +30,7 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('brand')->group(function() {
             Route::get('/', [BrandController::class, 'index'])->name('brand');
-            Route::get('add', [BrandController::class, 'add'])->name('brand.add');
+            Route::get('create', [BrandController::class, 'create'])->name('brand.create');
             Route::post('store', [BrandController::class, 'store'])->name('brand.store');
             Route::get('{brand}/edit', [BrandController::class, 'edit'])->name('brand.edit');
             Route::post('update', [BrandController::class, 'update'])->name('brand.update');
@@ -36,7 +39,7 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('category')->group(function() {
             Route::get('/', [CategoryController::class, 'index'])->name('category');
-            Route::get('add', [CategoryController::class, 'add'])->name('category.add');
+            Route::get('create', [CategoryController::class, 'create'])->name('category.create');
             Route::post('store', [CategoryController::class, 'store'])->name('category.store');
             Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
             Route::post('update', [CategoryController::class, 'update'])->name('category.update');
@@ -45,11 +48,43 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('subcategory')->group(function() {
             Route::get('/', [SubcategoryController::class, 'index'])->name('subcategory');
-            Route::get('add', [SubcategoryController::class, 'add'])->name('subcategory.add');
+            Route::get('create', [SubcategoryController::class, 'create'])->name('subcategory.create');
             Route::post('store', [SubcategoryController::class, 'store'])->name('subcategory.store');
             Route::get('{subcategory}/edit', [SubcategoryController::class, 'edit'])->name('subcategory.edit');
             Route::post('update', [SubcategoryController::class, 'update'])->name('subcategory.update');
             Route::get('{subcategory}/delete', [SubcategoryController::class, 'delete'])->name('subcategory.delete');
         });
+
+        Route::prefix('product')->group(function() {
+            Route::get('/',[ProductController::class,'index'])->name('product');
+            Route::get('create',[ProductController::class,'create'])->name('product.create');
+            Route::get('/ajax/{category_id}', [ProductController::class, 'getSubCategory']);
+            Route::post('store',[ProductController::class,'store'])->name('product.store');
+            Route::get('{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+            Route::post('{product}/update', [ProductController::class, 'update'])->name('product.update');
+            Route::get('show/{product}', [ProductController::class, 'show'])->name('product.show');
+            Route::get('delete/multiImage/{productImage}', [ProductController::class, 'multiImageDelete'])->name('product.multiImage.delete');
+            //  Product Inactive route --------------------------------------------------------------------
+            Route::get('{id}/inactive', [ProductController::class, 'productInactive'])->name('product.inactive');
+            Route::get('inactive',[ProductController::class,'productAllInactive'])->name('all.inactive.product');
+        });
+
+        Route::prefix('city')->group(function() {
+            Route::get('/', [CityController::class, 'index'])->name('city');
+            Route::post('store', [CityController::class, 'store'])->name('city.store');
+            Route::get('{city}/edit', [CityController::class, 'edit'])->name('city.edit');
+            Route::post('update', [CityController::class, 'update'])->name('city.update');
+            Route::get('{city}/delete', [CityController::class, 'delete'])->name('city.delete');
+        });
+
+        Route::prefix('seller')->group(function() {
+            Route::get('/', [SellerController::class, 'allSeller'])->name('allSeller');
+            Route::get('{user}/block', [SellerController::class, 'BlockedSeller'])->name('BlockedSeller');
+            Route::get('all/blocked', [SellerController::class, 'allBlockedSeller'])->name('allBlockedSeller');
+            Route::get('{user}/unblock', [SellerController::class, 'unBlockSeller'])->name('sellerUnBlock');
+            Route::get('show/{user}', [SellerController::class, 'show'])->name('sellerProfile');
+        });
+
+
     });
 });

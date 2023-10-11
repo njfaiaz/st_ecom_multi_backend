@@ -31,28 +31,62 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#subcatMenu" aria-expanded="false" aria-controls="navPages">
+            <li class="nav-item">
+                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#productPage" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"
                     class="nav-icon icon-xs me-2">
-                </i> Subcategory
+                </i> Products
                 </a>
-                <div id="subcatMenu" class="collapse" data-bs-parent="#sideNavbar">
+                <div id="productPage" class="collapse" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="#">
-                            Add Sub Category
+                            <a class="nav-link " href="{{ route('product.create') }}">
+                            Add Product
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link has-arrow"  href="#" >
-                            All Sub Category
+                            <a class="nav-link has-arrow"  href="{{ route('product') }}" >
+                            Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow"  href="{{ route('all.inactive.product') }}" >
+                            Inactive Products
                             </a>
                         </li>
                     </ul>
                 </div>
-            </li> --}}
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#userVendorPage" aria-expanded="false" aria-controls="navPages">
+                <i
+                    data-feather="layers"
+                    class="nav-icon icon-xs me-2">
+                </i> Sellers
+                </a>
+                <div id="userVendorPage" class="collapse" data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow"  href="{{ route('allSeller') }}" >
+                                Seller List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow"  href="{{ route('allBlockedSeller') }}" >
+                                Blocked Seller
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('city') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  City Manage
+                </a>
+            </li>
 
 
         </ul>
