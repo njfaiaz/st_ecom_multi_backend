@@ -10,12 +10,14 @@ use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Brand;
+use App\Models\Review;
+use App\Models\ReviewImage;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::where('is_active','1')->latest()->paginate(15);
+        $products = Product::where('is_active','1')->latest()->paginate(30);
 
         return view('admin.product.index',compact('products'));
     }
@@ -195,13 +197,20 @@ class ProductController extends Controller
             'message'=>'Product InActive Successfully ',
             'alert-type'=>'success'
         );
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('product')->with($notification);
     }
 
     public function productAllInactive ()
     {
         $products = Product::where('is_active','0')->latest()->paginate(15);
         return view('admin.product.inactive',compact('products'));
+    }
+
+    public function productReview($product)
+    {
+        $reviews = Review::with('product', 'images')->where('product_id', $product)->paginate(20);
+
+        return view('admin.product.review', compact('reviews'));
     }
 
 }

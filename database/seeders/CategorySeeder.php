@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categoryPath = 'images/categories/';
-        $categories = ['Men', 'Women', 'Kids', 'Clothing', 'Electronic Accessories', 'Furniture', 'Phone', 'Glossary', 'Sport'];
+        $categories = ['Men', 'Women', 'Kids', 'Clothing', 'Electronic', 'Furniture', 'Phone', 'Glossary', 'Sport'];
         $subcategories = ['Pant', 'Shirt', 'Watch', 'Bag', 'Shoes', 'Samsung', 'Sony', 'Apple', 'Xiaomi'];
 
         foreach($categories as $categoryName) {

@@ -2,8 +2,14 @@
 @section('title', 'Product')
 @section('content')
 
+<div class="card-header d-flex justify-content-between mt-3 mx-2">
+    <h3 class=" mb-2">Products Details</h3>
+    <div>
+        <a href="{{ route('product.inactive', $product->id) }}" id="delete" class="btn btn-danger btn-sm">Delete Product</a>
+    </div>
+</div>
+
 <div class="container mb-3">
-    <h3 class="mt-4 mb-2">Products Details</h3>
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -127,7 +133,7 @@
                                     @endforeach
                                 </div>
                                 <div class="my-3">
-                                    <a href="javascript:void()" class="btn-link fw-semi-bold ">View all {{ $review_count }} reviews</a>
+                                    <a href="{{ route('product.review', $product->id) }}" class="btn-link fw-semi-bold ">View all {{ $review_count }} reviews</a>
                                 </div>
                             </div>
                         </div>

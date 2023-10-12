@@ -11,7 +11,6 @@
                     href="{{ route('sellerProfile', $seller->id) }}">
                     <h5 class="fw-bold">{{ $seller->shop->username }}</h5>
                 </a>
-
                 <div class=" mb-2">
                     @php $rating = $seller->shop->rating; @endphp
                         <i data-feather="star" class="nav-icon icon-xs {{ $rating > 0 ? 'text-warning':'text-muted' }} "></i>

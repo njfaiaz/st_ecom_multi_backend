@@ -1,13 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CityController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SellerController;
-use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function(){
             Route::get('{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
             Route::post('{product}/update', [ProductController::class, 'update'])->name('product.update');
             Route::get('show/{product}', [ProductController::class, 'show'])->name('product.show');
+            Route::get('review/{product}', [ProductController::class, 'productReview'])->name('product.review');
             Route::get('delete/multiImage/{productImage}', [ProductController::class, 'multiImageDelete'])->name('product.multiImage.delete');
             //  Product Inactive route --------------------------------------------------------------------
             Route::get('{id}/inactive', [ProductController::class, 'productInactive'])->name('product.inactive');
@@ -84,6 +85,7 @@ Route::middleware('auth')->group(function(){
             Route::get('{user}/unblock', [SellerController::class, 'unBlockSeller'])->name('sellerUnBlock');
             Route::get('show/{user}', [SellerController::class, 'show'])->name('sellerProfile');
         });
+
 
 
     });

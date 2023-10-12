@@ -16,13 +16,18 @@ class Review extends Model
         return $this->hasMany(Order::class);
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasOne(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ReviewImage::class);
     }
 }

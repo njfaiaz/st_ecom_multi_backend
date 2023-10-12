@@ -43,7 +43,7 @@ class ReviewSeeder extends Seeder
         for ($i = 1; $i < 3; $i++) {
             ReviewImage::create([
                 'review_id' => $review->id,
-                'image' => 'reviews/' . rand(38, 60) . '.png'
+                'image' => 'images/reviews/' . rand(38, 60) . '.png'
             ]);
         }
     }
