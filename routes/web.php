@@ -8,7 +8,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Seller\SellerDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -86,7 +88,16 @@ Route::middleware('auth')->group(function(){
             Route::get('show/{user}', [SellerController::class, 'show'])->name('sellerProfile');
         });
 
+        Route::prefix('order')->group(function() {
+            Route::get('/', [OrderController::class, 'index'])->name('order');
+            Route::get('{order}/order', [OrderController::class, 'show'])->name('orderShow');
+        });
+
 
 
     });
 });
+
+
+
+

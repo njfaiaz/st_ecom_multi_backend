@@ -25,13 +25,14 @@ class OrderSeeder extends Seeder
 
         foreach($users as $user) {
 
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= 2000; $i++) {
 
                 $totalPrice = $this->prices[array_rand($this->prices)];
                 $discount = $this->discounts[array_rand($this->discounts)];
                 $payable = $totalPrice - $discount;
 
                 $order = Order::create([
+                    'order_id' => 'Inv' . rand(1000, 9999),
                     'shop_id' => $shops[array_rand($shops)],
                     'user_address_id' => $user->addresses->first()->id,
                     'user_id' => $user->id,
@@ -42,6 +43,7 @@ class OrderSeeder extends Seeder
                     'payable'=> $payable,
                     'paid' => $payable,
                     'due' => 0,
+                    'status' =>rand(0, 8),
                 ]);
 
                 $this->saveItems($order);
@@ -51,7 +53,7 @@ class OrderSeeder extends Seeder
 
     private function saveItems($order)
     {
-        for ($i = 1; $i < 15; $i++) {
+        for ($i = 1; $i < 3; $i++) {
 
             $product = Product::inRandomOrder()->first();
             $quantity = rand(1,5);

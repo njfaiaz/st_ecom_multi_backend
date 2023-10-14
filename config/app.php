@@ -164,10 +164,12 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
-
+            \Yajra\DataTables\DataTablesServiceProvider::class,
+            \Yajra\DataTables\ButtonsServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -192,6 +194,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'DataTables' => \Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];

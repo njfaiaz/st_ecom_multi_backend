@@ -12,6 +12,8 @@
         {{-- admin sweet alert ---------------------------- --}}
         <link rel="stylesheet" href="{{ asset('dashboard/assets/css/sweetalert2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('dashboard/assets/css/toastr.css') }}">
+
+
         <title>@yield('title')</title>
     </head>
 
@@ -63,6 +65,7 @@
 
 
         @stack('footer_scripts')
+
     </body>
 </html>
 
