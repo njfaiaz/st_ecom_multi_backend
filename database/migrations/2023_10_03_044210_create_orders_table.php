@@ -20,7 +20,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id')->nullable();
+            $table->string('invoice_no')->nullable();
             $table->foreignIdFor(Shop::class);
             $table->foreignIdFor(UserAddress::class);
             $table->foreignIdFor(User::class);
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignIdFor(PaymentOption::class)->nullable();
             $table->integer('total_price');
             $table->integer('discount');
+            $table->integer('delivery_fee')->default(0);
             $table->integer('payable');
             $table->integer('paid')->default(0);
             $table->integer('due')->default(0);

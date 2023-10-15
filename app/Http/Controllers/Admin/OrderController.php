@@ -11,61 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    // public function index(Request $request)
-    // {
-
-    //     if ($request->ajax()) {
-    //         $data = Order::with('shop', 'user', 'payment_option')->get();
-
-    //         return Datatables::of($data)
-    //             ->addIndexColumn()
-    //             ->editColumn('created_at', function(Order $order){
-    //                 return $order->created_at->format('Y.m.d H:i:s');
-    //             })
-
-    //             ->addColumn('status', function($row){
-
-    //                 if($row->status == 1)
-    //                 {
-    //                     return "Pending";
-    //                 } elseif($row->status == 2)
-    //                 {
-    //                     return "Processing";
-    //                 } elseif($row->status == 3)
-    //                 {
-    //                     return "On the way";
-    //                 } elseif($row->status == 4)
-    //                 {
-    //                     return "Shipped";
-    //                 } elseif($row->status == 5)
-    //                 {
-    //                     return "Delivered";
-    //                 } elseif($row->status == 6)
-    //                 {
-    //                     return "Cancelled by Customer";
-    //                 } elseif($row->status == 7)
-    //                 {
-    //                     return "Cancelled by Seller";
-    //                 } else {
-    //                     return "Refunded";
-    //                 }
-
-    //             })
-    //         ->make();
-    //     }
-
-    //     return view('admin.order.index');
-    // }
-
     public function index(OrderDataTable $dataTable)
     {
         return $dataTable->render('admin.order.index');
     }
 
-    public function orderShow($order)
+        public function show($order)
     {
-        return $order;
+        $order = Order::with('items.product', 'payment_option')->where('invoice_no', $order)->first();
+        return view('admin.order.show',compact('order'));
     }
+
+    public function invoice(Order $order)
+    {
+        $order->load('address.city','items.product', 'payment_option');
+// return $order;
+        return view('admin.order.invoice', compact('order'));
+    }
+
 
 }
 

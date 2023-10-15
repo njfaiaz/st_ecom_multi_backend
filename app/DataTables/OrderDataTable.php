@@ -20,15 +20,6 @@ class OrderDataTable extends DataTable
         return datatables()
 
         ->eloquent($query)
-        ->addColumn('order_id', function ($row) {
-            return '<a href="/order/show/1">order_id</a>';
-        })
-
-        ->addColumn('order_id', function($row) {
-            return '<a href="/prodicts/'. $row->id .'/edit" class="btn btn-primary">Edit</a>';
-        })
-
-
         ->addColumn('status', function($row){
 
             if($row->status == 1)
@@ -57,6 +48,20 @@ class OrderDataTable extends DataTable
             }
 
         })
+        ->addColumn('action', function ($query) {
+            return '<a href="' . route("orderShow", $query->invoice_no) .
+            '" class="btn btn-info text-white btn-sm" target="_blank">Show</a>';
+        })
+        ->addColumn('payment_type', function($row){
+
+            if($row->payment_type == 0)
+            {
+                return "Cod";
+            } else {
+                return "Noncod";
+            }
+
+        })
         ->editColumn('created_at', function($query){
             return $query->created_at->format('Y.m.d H:i:s');
         })
@@ -69,25 +74,6 @@ class OrderDataTable extends DataTable
     public function query(Order $model)
     {
         $data = Order::with('user', 'shop', 'payment_option')->select();
-
-        $start_date     = $this->request()->get('start_date');
-        $end_date       = $this->request()->get('end_date');
-        $statusValue    = $this->request()->get('statusValue');
-
-        $query = $model->newQuery();
-        if ( !empty($start_date)  &&   !empty($end_date))
-        {
-            $start_date  = Carbon::parse($start_date);
-
-            $end_date = Carbon::parse($end_date);
-
-            $query = $query->whereBetween('created_at',[$start_date,$end_date]);
-        }
-
-        if(!empty($statusValue))
-        {
-            $query = $query->where('statusValue',$statusValue);
-        }
         return $this->applyScopes($data);
     }
 
@@ -95,33 +81,36 @@ class OrderDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('Order-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('csv'),
-                        Button::make('excel')
-                    );
+            ->setTableId('Order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            // ->dom('Bfrtip')
+            ->orderBy(1)
+            ->buttons(
+                Button::make('csv'),
+                Button::make('excel')
+            );
     }
 
 
     public function getColumns(): array
     {
         return [
-            Column::make('order_id'),
+            Column::make('invoice_no'),
             Column::make('shop.username'),
             Column::make('user.username'),
             Column::make('payment_option.name'),
+            Column::make('payment_type'),
             Column::make('total_price'),
             Column::make('discount'),
+            Column::make('delivery_fee'),
             Column::make('payable'),
             Column::make('paid'),
             Column::make('due'),
             Column::make('status'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::make('action'),
         ];
     }
 

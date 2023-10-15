@@ -90,7 +90,8 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('order')->group(function() {
             Route::get('/', [OrderController::class, 'index'])->name('order');
-            Route::get('{order}/order', [OrderController::class, 'show'])->name('orderShow');
+            Route::get('{order}/details', [OrderController::class, 'show'])->name('orderShow');
+            Route::get('{order}/invoice', [OrderController::class, 'invoice'])->name('invoice');
         });
 
 

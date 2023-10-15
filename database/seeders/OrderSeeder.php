@@ -15,7 +15,7 @@ class OrderSeeder extends Seeder
 {
     private $prices = [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300];
     private $discounts = [50, 100, 200];
-
+    private $delivery_fee = [50, 100];
     public function run()
     {
         $shops = Shop::pluck('id')->toArray();
@@ -25,14 +25,16 @@ class OrderSeeder extends Seeder
 
         foreach($users as $user) {
 
-            for ($i = 1; $i <= 2000; $i++) {
+            for ($i = 1; $i <= 200; $i++) {
+
 
                 $totalPrice = $this->prices[array_rand($this->prices)];
                 $discount = $this->discounts[array_rand($this->discounts)];
-                $payable = $totalPrice - $discount;
+                $delivery = $this->delivery_fee[array_rand($this->delivery_fee)];
+                $payable = ($totalPrice - $discount) + $delivery;
 
                 $order = Order::create([
-                    'order_id' => 'Inv' . rand(1000, 9999),
+                    'invoice_no' => 'Inv' . rand(1000, 9999),
                     'shop_id' => $shops[array_rand($shops)],
                     'user_address_id' => $user->addresses->first()->id,
                     'user_id' => $user->id,
@@ -41,6 +43,7 @@ class OrderSeeder extends Seeder
                     'total_price'=> $totalPrice,
                     'discount'=> $discount,
                     'payable'=> $payable,
+                    'delivery_fee' => $delivery,
                     'paid' => $payable,
                     'due' => 0,
                     'status' =>rand(0, 8),

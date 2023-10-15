@@ -84,13 +84,13 @@
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('city') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  City Manage
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i> Manage City
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('order') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Order
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Manage Order
                 </a>
             </li>
 
