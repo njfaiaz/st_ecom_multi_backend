@@ -110,7 +110,7 @@
 
                         <tr>
                             <td>
-                                <strong class="status">Discount Charge</strong>
+                                <strong class="status">Discount</strong>
                             </td>
                             <td>- ${{ $order->discount }}</td>
                         </tr>

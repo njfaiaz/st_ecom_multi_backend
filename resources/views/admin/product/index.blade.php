@@ -26,13 +26,16 @@
                             <span class="text-dark fw-bold">{{ $product->sale_price }}</span>
                         </p>
                     </div>
-                    <div class="d-flex ">
-                        @php $rating = $product->rating; @endphp
-                        <i data-feather="star" class="nav-icon icon-xs {{ $rating > 0 ? 'text-warning':'text-muted' }} "></i>
-                        <i data-feather="star" class="nav-icon icon-xs {{ $rating > 1 ? 'text-warning':'text-muted' }} "></i>
-                        <i data-feather="star" class="nav-icon icon-xs {{ $rating > 2 ? 'text-warning':'text-muted' }} "></i>
-                        <i data-feather="star" class="nav-icon icon-xs {{ $rating > 3 ? 'text-warning':'text-muted' }} "></i>
-                        <i data-feather="star" class="nav-icon icon-xs {{ $rating > 4 ? 'text-warning':'text-muted' }} "></i>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex">
+                            @php $rating = $product->rating; @endphp
+                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 0 ? 'text-warning':'text-muted' }} "></i>
+                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 1 ? 'text-warning':'text-muted' }} "></i>
+                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 2 ? 'text-warning':'text-muted' }} "></i>
+                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 3 ? 'text-warning':'text-muted' }} "></i>
+                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 4 ? 'text-warning':'text-muted' }} "></i>
+                        </div>
+                        <a href="{{ route('product.inactive', $product->id) }}" id="delete" class="link-danger">Delete</a>
                     </div>
                 </div>
             </div>
@@ -40,68 +43,5 @@
     @endforeach
     {{ $products->links() }}
 </div>
-
-
-
-
-{{-- <section style="background-color: #eee;">
-    <div class="container ">
-        <div class="row ">
-            @foreach ($products as $item)
-                <div class="col-md-12 col-lg-3 mb-4 mb-lg-0">
-                    <div class="card  my-3 ">
-                        @php
-                            $discountAmount = $item->regular_price - $item->sale_price;
-                        @endphp
-                        <img src="{{ asset($item->image) }}"class="Card image cap" style="height: 270px;" alt="Laptop"/>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5 class="mb-0">{{ $item->name }}</h5>
-
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="badge bg-secondary fw-normal">{{ $item->category->name }}</p>
-                                    <p>
-                                        <s class="text-muted small">${{ round($discountAmount) }}</s>
-                                        <span class="text-dark fw-bold">{{ $item->sale_price }}</span>
-                                    </p>
-                                </div>
-
-                                <div class="d-flex justify-content-between mb-2">
-                                    @if ($item->stock_in > 0)
-                                    <p class="text-muted mb-0">Available: <span class="fw-bold">{{ $item->stock_in }}</span></p>
-                                    @else
-                                        <span class="stock-status out-stock"> Stock Out </span>
-                                    @endif
-
-                                    <div class=" mb-2">
-                                        @php $rating = $item->rating; @endphp
-                                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 0 ? 'text-warning':'text-muted' }} "></i>
-                                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 1 ? 'text-warning':'text-muted' }} "></i>
-                                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 2 ? 'text-warning':'text-muted' }} "></i>
-                                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 3 ? 'text-warning':'text-muted' }} "></i>
-                                            <i data-feather="star" class="nav-icon icon-xs {{ $rating > 4 ? 'text-warning':'text-muted' }} "></i>
-                                            <span> ({{ $rating }})</span>
-                                    </div>
-                                </div>
-                                <div class="action mt-2">
-                                    <a href="{{ route('product.show', $item->id) }}" class="btn btn-info text-white btn-sm">
-                                        <i data-feather="eye" class="nav-icon icon-xs"></i>
-                                    </a>
-                                    <a href="{{ route('product.edit', $item->id) }}" class="btn btn-info text-white btn-sm">
-                                        <i data-feather="edit" class="nav-icon icon-xs"></i>
-                                    </a>
-                                    <a href="{{ route('product.inactive', $item->id) }}" id="delete" class="btn btn-danger btn-sm">
-                                        <i data-feather="trash-2" class="nav-icon icon-xs"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            @endforeach
-            {{ $products->links() }}
-        </div>
-    </div>
-</section> --}}
 
 @endsection

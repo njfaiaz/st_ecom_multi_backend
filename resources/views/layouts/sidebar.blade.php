@@ -41,11 +41,6 @@
                 <div id="productPage" class="collapse" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link " href="{{ route('product.create') }}">
-                            Add Product
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link has-arrow"  href="{{ route('product') }}" >
                             Products
                             </a>
@@ -91,6 +86,58 @@
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('order') }}">
                 <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Manage Order
+                </a>
+            </li>
+<hr>
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('seller.dashboard') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Seller Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#sellerproductPage" aria-expanded="false" aria-controls="navPages">
+                <i
+                    data-feather="layers"
+                    class="nav-icon icon-xs me-2">
+                </i> Products
+                </a>
+                <div id="sellerproductPage" class="collapse" data-bs-parent="#sideNavbar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ route('seller.product.create') }}">
+                            Add Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow"  href="{{ route('seller.product') }}" >
+                            Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link has-arrow"  href="{{ route('seller.all.inactive.product') }}" >
+                            Inactive Products
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('seller.brand') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Brands
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('seller.category') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Category
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('seller.subcategory') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Subcategory
                 </a>
             </li>
 

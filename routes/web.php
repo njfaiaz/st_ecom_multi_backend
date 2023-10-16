@@ -10,7 +10,11 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Seller\SellerBrandController;
+use App\Http\Controllers\Seller\SellerCategoryController;
 use App\Http\Controllers\Seller\SellerDashboardController;
+use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\Seller\SellerSubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -59,15 +63,8 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('product')->group(function() {
             Route::get('/',[ProductController::class,'index'])->name('product');
-            Route::get('create',[ProductController::class,'create'])->name('product.create');
-            Route::get('/ajax/{category_id}', [ProductController::class, 'getSubCategory']);
-            Route::post('store',[ProductController::class,'store'])->name('product.store');
-            Route::get('{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
-            Route::post('{product}/update', [ProductController::class, 'update'])->name('product.update');
             Route::get('show/{product}', [ProductController::class, 'show'])->name('product.show');
             Route::get('review/{product}', [ProductController::class, 'productReview'])->name('product.review');
-            Route::get('delete/multiImage/{productImage}', [ProductController::class, 'multiImageDelete'])->name('product.multiImage.delete');
-            //  Product Inactive route --------------------------------------------------------------------
             Route::get('{id}/inactive', [ProductController::class, 'productInactive'])->name('product.inactive');
             Route::get('inactive',[ProductController::class,'productAllInactive'])->name('all.inactive.product');
         });
@@ -93,9 +90,45 @@ Route::middleware('auth')->group(function(){
             Route::get('{order}/details', [OrderController::class, 'show'])->name('orderShow');
             Route::get('{order}/invoice', [OrderController::class, 'invoice'])->name('invoice');
         });
+    });
 
 
 
+    Route::group(['prefix'=> 'seller'], function(){
+        Route::get('dashboard',[SellerDashboardController::class, 'index'])->name('seller.dashboard');
+
+        Route::prefix('product')->group(function() {
+            Route::get('/',[SellerProductController::class,'index'])->name('seller.product');
+            Route::get('create',[SellerProductController::class,'create'])->name('seller.product.create');
+            Route::get('/ajax/{category_id}', [SellerProductController::class, 'getSubCategory']);
+            Route::post('store',[SellerProductController::class,'store'])->name('seller.product.store');
+            Route::get('{product}/edit', [SellerProductController::class, 'edit'])->name('seller.product.edit');
+            Route::post('{product}/update', [SellerProductController::class, 'update'])->name('seller.product.update');
+            Route::get('show/{product}', [SellerProductController::class, 'show'])->name('seller.product.show');
+            Route::get('review/{product}', [SellerProductController::class, 'productReview'])->name('seller.product.review');
+            Route::get('delete/multiImage/{productImage}', [SellerProductController::class, 'multiImageDelete'])->name('seller.product.multiImage.delete');
+            //  Product Inactive route --------------------------------------------------------------------
+            Route::get('{id}/inactive', [SellerProductController::class, 'productInactive'])->name('seller.product.inactive');
+            Route::get('inactive',[SellerProductController::class,'productAllInactive'])->name('seller.all.inactive.product');
+        });
+
+        Route::prefix('brand')->group(function() {
+            Route::get('/', [SellerBrandController::class, 'index'])->name('seller.brand');
+            Route::get('create', [SellerBrandController::class, 'create'])->name('seller.brand.create');
+            Route::post('store', [SellerBrandController::class, 'store'])->name('seller.brand.store');
+        });
+
+        Route::prefix('category')->group(function() {
+            Route::get('/', [SellerCategoryController::class, 'index'])->name('seller.category');
+            Route::get('create', [SellerCategoryController::class, 'create'])->name('seller.category.create');
+            Route::post('store', [SellerCategoryController::class, 'store'])->name('seller.category.store');
+        });
+
+        Route::prefix('subcategory')->group(function() {
+            Route::get('/', [SellerSubCategoryController::class, 'index'])->name('seller.subcategory');
+            Route::get('create', [SellerSubCategoryController::class, 'create'])->name('seller.subcategory.create');
+            Route::post('store', [SellerSubCategoryController::class, 'store'])->name('seller.subcategory.store');
+        });
     });
 });
 

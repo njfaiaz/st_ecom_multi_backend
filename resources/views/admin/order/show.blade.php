@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>
                                         <img src="{{ asset($item->product->image) }}" style="width: 80px; height:80x;" class="img-thumbnail">
-                                        <span>{{ $item->product->name }}</span>
+                                        <span>{{ $item->product->name }}
                                         <ul style="list-style-type:none;">
                                             @foreach ($item->variants as $variant)
                                                 <li>{{ $variant->name }}: {{ $variant->value  }}
@@ -49,6 +49,7 @@
                                                 ?>
                                             @endforeach
                                         </ul>
+                                    </span>
                                     </td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->quantity }} * {{ $total_price }} </td>

@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if($user->role != 1 )
+        if($user->role != 3 )
         {
             return redirect()->back()->withInput()->with('error', 'Please try with different email!');
         }

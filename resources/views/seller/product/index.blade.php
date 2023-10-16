@@ -1,101 +1,6 @@
-
-
 @extends('layouts.app')
-@section('title', 'Dashboard')
-
-<style>
-    body{
-        margin-top:20px;
-        background:#FAFAFA;
-    }
-    .order-card {
-        color: #fff;
-    }
-
-    .bg-c-blue {
-        background: linear-gradient(45deg,#4099ff,#73b4ff);
-    }
-
-    .bg-c-green {
-        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
-    }
-
-    .bg-c-yellow {
-        background: linear-gradient(45deg,#FFB64D,#ffcb80);
-    }
-
-    .bg-c-pink {
-        background: linear-gradient(45deg,#FF5370,#ff869a);
-    }
-
-
-    .card {
-        border-radius: 5px;
-        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
-        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
-        border: none;
-        margin-bottom: 30px;
-        -webkit-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .card .card-block {
-        padding: 25px;
-    }
-
-    .order-card i {
-        font-size: 26px;
-    }
-
-    .f-left {
-        float: left;
-    }
-
-    .f-right {
-        float: right;
-    }
-    </style>
+@section('title', 'All Product')
 @section('content')
-
-<div class="row mt-5">
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-blue order-card">
-            <div class="card-block">
-                <h5 class="m-b-20">Total Orders</h5>
-                <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>{{ $data['shopCount']->count() }}</span></h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-            <div class="card-block">
-                <h5 class="m-b-20">In Transit</h5>
-                <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>$ {{ $data['shopCount']->sum('paid') }} </span></h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-pink order-card">
-            <div class="card-block">
-                <h5 class="m-b-20">Pending Orders</h5>
-                <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>{{ $data['pendingOrder']->count() }}</span></h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-            <div class="card-block">
-                <h5 class="m-b-20">Return Orders</h5>
-                <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>{{ $data['returnOrder']->count() }} </span></h2>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 
 <div class="row mt-2">
     <div class="block-header">
@@ -103,7 +8,7 @@
     </div>
     @foreach ($products as $product)
         <div class="col-12 col-sm-6 col-md-3 col-lg-2 mb-4 mb-lg-0">
-            <div class="card my-2" style="height: 260px;">
+            <div class="card my-2" style="height: 262px;">
                 @php
                     $discountAmount = $product->regular_price - $product->sale_price;
                 @endphp
@@ -146,5 +51,4 @@
     @endforeach
 </div>
 
- @endsection
-
+@endsection
