@@ -39,13 +39,6 @@
                     <div class="invoice-details-inner">
                         <p class="invoice-details-para"><strong>Invoice Id : </strong> {{ $order->invoice_no }}</p>
                         <p class="invoice-details-para"><strong>Purchase:</strong> {{ $order->created_at->toDayDateTimeString() }} </p>
-                        <p class="invoice-details-para"><strong>Payment Status :</strong>
-                            @if ($order->payment_type >= 1)
-                                 {{ 'Non-Cod' }}
-                            @else
-                                <span class="font-weight-bold"> {{ 'Cod' }}</span>
-                            @endif
-                        </p>
                         <p class="invoice-details-para"><strong>Address: </strong> {{ $order->address->city->name }}, {{ $order->address->address }}</p>
                     </div>
                 </div>
@@ -94,6 +87,18 @@
                                 $shippingCharge = $order->delivery_charge;
                                 $total = ($totalPrice + $shippingCharge);
                             @endphp
+                            {{-- <tr>
+                                <td>
+                                    <strong class="status">Discount (%)</strong>
+                                    <td>
+                                        @if ($item->product->discount == NULL)
+                                            <span>- 0%</span>
+                                        @else
+                                            <span class="text-danger">- {{ $item->product->discount }}%</span>
+                                        @endif
+                                    </td>
+                                </td>
+                            </tr> --}}
                         </tr>
 
                         <tr>

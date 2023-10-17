@@ -141,6 +141,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link has-arrow  active " href="{{ route('seller.order') }}">
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Order
+                </a>
+            </li>
+
 
         </ul>
     </div>

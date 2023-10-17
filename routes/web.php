@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Seller\SellerBrandController;
 use App\Http\Controllers\Seller\SellerCategoryController;
 use App\Http\Controllers\Seller\SellerDashboardController;
+use App\Http\Controllers\Seller\SellerOrderController;
 use App\Http\Controllers\Seller\SellerProductController;
 use App\Http\Controllers\Seller\SellerSubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -128,6 +129,10 @@ Route::middleware('auth')->group(function(){
             Route::get('/', [SellerSubCategoryController::class, 'index'])->name('seller.subcategory');
             Route::get('create', [SellerSubCategoryController::class, 'create'])->name('seller.subcategory.create');
             Route::post('store', [SellerSubCategoryController::class, 'store'])->name('seller.subcategory.store');
+        });
+
+        Route::prefix('order')->group(function() {
+            Route::get('/', [SellerOrderController::class, 'index'])->name('seller.order');
         });
     });
 });
