@@ -2,58 +2,32 @@
 
 namespace App\Http\Controllers\Seller;
 
-use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Order;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 
 class SellerOrderController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $id = Auth::user()->id;
-            $data = Order::with('shop', 'user', 'payment_option')->where('shop_id', $id)->get();
+        $id = Auth::user()->id;
+        $orders = Order::with('shop', 'user', 'payment_option')->where('shop_id', $id)->latest()->paginate(10);
 
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->editColumn('created_at', function(Order $order){
-                    return $order->created_at->format('Y.m.d H:i:s');
-                })
+        return view('seller.order.index', compact('orders'));
+    }
 
-                ->addColumn('status', function($row){
+    public function show($order)
+    {
+        $order = Order::with('items.product', 'payment_option')->where('invoice_no', $order)->first();
 
-                    if($row->status == 1)
-                    {
-                        return "Pending";
-                    } elseif($row->status == 2)
-                    {
-                        return "Processing";
-                    } elseif($row->status == 3)
-                    {
-                        return "On the way";
-                    } elseif($row->status == 4)
-                    {
-                        return "Shipped";
-                    } elseif($row->status == 5)
-                    {
-                        return "Delivered";
-                    } elseif($row->status == 6)
-                    {
-                        return "Cancelled by Customer";
-                    } elseif($row->status == 7)
-                    {
-                        return "Cancelled by Seller";
-                    } else {
-                        return "Refunded";
-                    }
+        return view('seller.order.show',compact('order'));
+    }
 
-                })
-            ->make();
-        }
+    public function invoice(Order $order)
+    {
+        $order->load('address.city','items.product', 'payment_option');
 
-        return view('seller.order.index');
+        return view('seller.order.invoice', compact('order'));
     }
 }

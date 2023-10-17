@@ -43,7 +43,7 @@
                             @if ($order->payment_type >= 1)
                                  {{ 'Non-Cod' }}
                             @else
-                                <span class="font-weight-bold"> {{ 'Cod' }}</span>
+                                 {{ 'Cod' }}
                             @endif
                         </p>
                         <p class="invoice-details-para"><strong>Address: </strong> {{ $order->address->city->name }}, {{ $order->address->address }}</p>

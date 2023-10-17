@@ -39,6 +39,13 @@
                     <div class="invoice-details-inner">
                         <p class="invoice-details-para"><strong>Invoice Id : </strong> {{ $order->invoice_no }}</p>
                         <p class="invoice-details-para"><strong>Purchase:</strong> {{ $order->created_at->toDayDateTimeString() }} </p>
+                        <p class="invoice-details-para"><strong>Payment Status :</strong>
+                            @if ($order->payment_type >= 1)
+                                 {{ 'Non-Cod' }}
+                            @else
+                                 {{ 'Cod' }}
+                            @endif
+                        </p>
                         <p class="invoice-details-para"><strong>Address: </strong> {{ $order->address->city->name }}, {{ $order->address->address }}</p>
                     </div>
                 </div>

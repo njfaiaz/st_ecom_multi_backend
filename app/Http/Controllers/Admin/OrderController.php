@@ -5,9 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\DataTables\OrderDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use DataTables;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -16,16 +13,17 @@ class OrderController extends Controller
         return $dataTable->render('admin.order.index');
     }
 
-        public function show($order)
+    public function show($order)
     {
         $order = Order::with('items.product', 'payment_option')->where('invoice_no', $order)->first();
+
         return view('admin.order.show',compact('order'));
     }
 
     public function invoice(Order $order)
     {
         $order->load('address.city','items.product', 'payment_option');
-// return $order;
+
         return view('admin.order.invoice', compact('order'));
     }
 

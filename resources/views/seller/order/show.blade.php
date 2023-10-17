@@ -13,8 +13,8 @@
                         <h5 class="card-title mb-2">Order #{{ $order->invoice_no }}</h5>
                         <h6 class="card-text text-muted">Date : {{ $order->created_at->toDayDateTimeString() }}</h6>
                     </div>
-                     <div> {{--{{ route('invoice',$order->id) }} --}}
-                        <a href="{{ route('invoice',$order->id) }}" target="_blank" class="btn btn-primary">Invoice</a>
+                     <div>
+                        <a href="{{ route('seller.invoice',$order->id) }}" target="_blank" class="btn btn-primary">Invoice</a>
                     </div>
                 </div>
             </div>

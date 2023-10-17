@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ProductImage;
+use Illuminate\Http\Request;
+use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductImage;
 use App\Models\Review;
-use App\Models\Subcategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Brand;
 
 class SellerProductController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use App\Models\Subcategory;
+use App\Models\Category;
 
 class SellerSubCategoryController extends Controller
 {

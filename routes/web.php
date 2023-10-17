@@ -133,10 +133,10 @@ Route::middleware('auth')->group(function(){
 
         Route::prefix('order')->group(function() {
             Route::get('/', [SellerOrderController::class, 'index'])->name('seller.order');
+            Route::get('{order}/details', [SellerOrderController::class, 'show'])->name('seller.orderShow');
+            Route::get('{order}/invoice', [SellerOrderController::class, 'invoice'])->name('seller.invoice');
         });
     });
 });
-
-
 
 

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class SellerBrandController extends Controller
 {
