@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Seller\SellerSubCategoryController;
+use App\Http\Controllers\Seller\SellerDashboardController;
+use App\Http\Controllers\Seller\SellerCategoryController;
+use App\Http\Controllers\Seller\SellerProductController;
+use App\Http\Controllers\Seller\SellerOrderController;
+use App\Http\Controllers\Seller\SellerBrandController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -7,15 +13,9 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Seller\SellerBrandController;
-use App\Http\Controllers\Seller\SellerCategoryController;
-use App\Http\Controllers\Seller\SellerDashboardController;
-use App\Http\Controllers\Seller\SellerOrderController;
-use App\Http\Controllers\Seller\SellerProductController;
-use App\Http\Controllers\Seller\SellerSubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

@@ -21,24 +21,24 @@
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('category') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Category
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Categories
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('subcategory') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Subcategory
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Subcategories
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#productPage" aria-expanded="false" aria-controls="navPages">
+                <a class="nav-link has-arrow  collapsed " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#sellerProductPage" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"
                     class="nav-icon icon-xs me-2">
                 </i> Products
                 </a>
-                <div id="productPage" class="collapse" data-bs-parent="#sideNavbar">
+                <div id="sellerProductPage" class="collapse" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link has-arrow"  href="{{ route('product') }}" >
@@ -55,7 +55,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#userVendorPage" aria-expanded="false" aria-controls="navPages">
+                <a class="nav-link has-arrow  collapsed " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#userVendorPage" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"
                     class="nav-icon icon-xs me-2">
@@ -96,13 +96,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link has-arrow  collapsed " href="#!" data-bs-toggle="collapse" data-bs-target="#sellerproductPage" aria-expanded="false" aria-controls="navPages">
+                <a class="nav-link has-arrow  collapsed " href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#productPage" aria-expanded="false" aria-controls="navPages">
                 <i
                     data-feather="layers"
                     class="nav-icon icon-xs me-2">
                 </i> Products
                 </a>
-                <div id="sellerproductPage" class="collapse" data-bs-parent="#sideNavbar">
+                <div id="productPage" class="collapse" data-bs-parent="#sideNavbar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link " href="{{ route('seller.product.create') }}">
@@ -131,19 +131,19 @@
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('seller.category') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Category
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Categories
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('seller.subcategory') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Subcategory
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Subcategories
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link has-arrow  active " href="{{ route('seller.order') }}">
-                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Order
+                <i data-feather="home" class="nav-icon icon-xs me-2"></i>  Orders
                 </a>
             </li>
 
