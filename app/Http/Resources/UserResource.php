@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'email' => $this->email,
             'role' => $this->role,
-            // 'address' => AddressResource::collection($this->addresses ?? []),
+            'address' => AddressResource::collection($this->addresses ?? []),
         ];
     }
 }
