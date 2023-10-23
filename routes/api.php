@@ -16,5 +16,6 @@ Route::get('brands', [BrandController::class, 'index']);
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('sub-category/{category}', [CategoryController::class, 'subCategories']);
 
-
 Route::get('products', [ProductController::class, 'index']);
+Route::get('product/{slug}', [ProductController::class, 'show']);
+Route::get('products/search', [ProductController::class, 'productSearch']);

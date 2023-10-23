@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -76,4 +78,60 @@ class Product extends Model
 
         return round($discount);
     }
+
+    public function saveOrUpdate(Validator $validator, Product $product = null)
+    {
+
+        $inputs = $validator->validated();
+
+        if (is_null($product)) {
+
+            if (isset($inputs['image'])) {
+                $inputs['image'] =  $this->uploadFile($inputs['image'], 'products');
+            }
+
+            $inputs['slug'] = Str::slug($inputs['name']);
+            $product = Product::create($inputs);
+
+            if (isset($inputs['gallery'])) {
+
+                foreach ($inputs['gallery'] as $image) {
+
+                    $image = $this->uploadFile($image, 'products');
+                    $product->images()->create([
+                        'image' => $image
+                    ]);
+                }
+            }
+        } else {
+
+            if (isset($inputs['image'])) {
+                $this->deleteFile($product->image);
+                $inputs['image'] =  $this->uploadFile($inputs['image'], 'products');
+            }
+
+
+            if (isset($inputs['gallery'])) {
+
+                if ($product->images) {
+                    foreach ($product->images as $image) {
+                        $this->deleteFile($image->image);
+                        $image->delete();
+                    }
+                }
+
+                foreach ($inputs['gallery'] as $image) {
+                    $image = $this->uploadFile($image, 'products');
+                    $product->images()->create([
+                        'image' => $image
+                    ]);
+                }
+            }
+
+            $product->update($inputs);
+        }
+    }
+
+
+
 }
