@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('profile', [UserController::class, 'index']);
     Route::post('profile/update', [UserController::class, 'update']);
     Route::post('password/update', [UserController::class, 'changePassword']);
+
+    Route::get('wishlist', [WishlistController::class, 'index']);
+    Route::post('wishlist/store', [WishlistController::class, 'store']);
+    Route::delete('wishlist/delete/{product_id}', [WishlistController::class, 'delete']);
 });
 
 
