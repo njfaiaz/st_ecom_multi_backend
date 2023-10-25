@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,8 @@ Route::get('logout', [AuthController::class, 'logout'])->middleware('auth:sanctu
 Route::get('brands', [BrandController::class, 'index']);
 
 Route::get('city', [AddressController::class, 'city']);
+
+Route::get('review', [ReviewController::class, 'index']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 Route::get('sub-category/{category}', [CategoryController::class, 'subCategories']);
@@ -40,6 +43,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('wishlist', [WishlistController::class, 'index']);
     Route::post('wishlist/store', [WishlistController::class, 'store']);
     Route::delete('wishlist/delete/{product_id}', [WishlistController::class, 'delete']);
+
+    Route::post('review/store', [ReviewController::class, 'store']);
 });
 
 
