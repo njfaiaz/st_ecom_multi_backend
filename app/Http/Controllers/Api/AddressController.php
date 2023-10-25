@@ -38,7 +38,7 @@ class AddressController extends Controller
         return successResponse('Address updated successfully');
     }
 
-    public function delete(UserAddress $address)
+    public function destroy(UserAddress $address)
     {
         if($address->user_id != auth()->id()) {
             return errorResponse('Address not found!', 403);

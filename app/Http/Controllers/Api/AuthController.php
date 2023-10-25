@@ -76,8 +76,6 @@ class AuthController extends Controller
         return apiResponse($response, 'Login Successful', 200);
     }
 
-
-
     public function logout(){
 
         Auth::user()->tokens()->delete();

@@ -5,12 +5,14 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
 Route::get('brands', [BrandController::class, 'index']);
 
@@ -25,10 +27,14 @@ Route::get('products/search', [ProductController::class, 'productSearch']);
 
 
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('user/address', [AddressController::class, 'index']);
-    Route::post('user/address/store', [AddressController::class, 'store']);
-    Route::post('user/address/update/{address}', [AddressController::class, 'update']);
-    Route::get('user/address/delete/{address}', [AddressController::class, 'delete']);
+    Route::get('address', [AddressController::class, 'index']);
+    Route::post('address/store', [AddressController::class, 'store']);
+    Route::post('address/update/{address}', [AddressController::class, 'update']);
+    Route::get('address/delete/{address}', [AddressController::class, 'destroy']);
+
+    Route::get('profile', [UserController::class, 'index']);
+    Route::post('profile/update', [UserController::class, 'update']);
+    Route::post('password/update', [UserController::class, 'changePassword']);
 });
 
 
