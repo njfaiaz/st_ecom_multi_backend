@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\ReviewResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Traits\Upload;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
+
 
 class ReviewController extends Controller
 {

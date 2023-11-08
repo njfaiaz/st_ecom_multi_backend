@@ -1,14 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
-use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -48,6 +48,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('review/store', [ReviewController::class, 'store']);
 
     Route::get('cart', [CartController::class, 'index']);
+    Route::get('cart/store', [CartController::class, 'store']);
+    Route::get('cart/delete/{cartItem}', [CartController::class, 'delete']);
 });
 
 
