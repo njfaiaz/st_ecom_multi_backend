@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WishlistController;
@@ -45,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::delete('wishlist/delete/{product_id}', [WishlistController::class, 'delete']);
 
     Route::post('review/store', [ReviewController::class, 'store']);
+
+    Route::get('cart', [CartController::class, 'index']);
 });
 
 

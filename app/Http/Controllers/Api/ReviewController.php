@@ -7,10 +7,13 @@ use App\Http\Resources\ReviewResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Traits\Upload;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ReviewController extends Controller
 {
+    use Upload;
     public function index()
     {
         $reviews = Review::with('images')->latest()->get();
@@ -29,6 +32,7 @@ class ReviewController extends Controller
             'gallery.*' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:5048'],
         ]);
 
+        // return $request->all();
         if ($validator->fails()) {
             return errorResponse($validator->errors()->first(), 422);
         }
@@ -50,12 +54,12 @@ class ReviewController extends Controller
                     }
                 }
 
-                // foreach ($request->gallery as $image) {
-                //     $image = $this->uploadFile($image, 'comment');
-                //     $reviewCheck->images()->create([
-                //         'image' => $image
-                //     ]);
-                // }
+                foreach ($request->gallery as $image) {
+                    $image = $this->uploadFile($image, 'comment');
+                    $reviewCheck->images()->create([
+                        'image' => $image
+                    ]);
+                }
             }
 
             return successResponse('Review submitted');
@@ -69,15 +73,15 @@ class ReviewController extends Controller
             'rating' => $request->rating,
         ]);
 
-        // if (isset($request->gallery)) {
+        if (isset($request->gallery)) {
 
-        //     foreach ($request->gallery as $image) {
-        //         $image = $this->uploadFile($image, 'comment');
-        //         $review->images()->create([
-        //             'image' => $image
-        //         ]);
-        //     }
-        // }
+            foreach ($request->gallery as $image) {
+                $image = $this->uploadFile($image, 'comment');
+                $review->images()->create([
+                    'image' => $image
+                ]);
+            }
+        }
 
         return successResponse('Review updated');
     }

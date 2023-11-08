@@ -22,6 +22,8 @@ class ReviewResource extends JsonResource
 
     private function galleryResource($images=[])
     {
+
+
         $data = [];
         foreach($images as $image) {
             $data[] = getImageUrl($image->image);
