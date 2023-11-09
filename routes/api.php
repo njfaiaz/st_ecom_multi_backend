@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\UserController;
@@ -50,7 +51,10 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('cart', [CartController::class, 'index']);
     Route::get('cart/store', [CartController::class, 'store']);
     Route::get('cart/delete/{cartItem}', [CartController::class, 'delete']);
+
+    Route::get('order', [OrderController::class, 'index']);
 });
+
 
 
 

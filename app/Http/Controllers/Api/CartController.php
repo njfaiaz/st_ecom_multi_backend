@@ -56,13 +56,12 @@ class CartController extends Controller
 
     public function delete(CartItem $cartItem)
     {
-        if ($cartItem->cart->user_id === auth()->user()->id) {
-
-            $cartItem->delete();
-
-            return successResponse('Cart deleted');
-        } else {
-            return errorResponse('Cart Product Not Found', 401);
+        if ($cartItem->cart->user_id !== auth()->user()->id) {
+            return errorResponse('Cart Not Found', 404);
         }
+
+        $cartItem->delete();
+
+        return successResponse('Cart deleted');
     }
 }

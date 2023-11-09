@@ -7,9 +7,11 @@ use Illuminate\Database\Seeder;
 use App\Models\PaymentOption;
 use App\Models\OrderItem;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\User;
+use App\Models\UserAddress;
 
 class OrderSeeder extends Seeder
 {
@@ -25,7 +27,7 @@ class OrderSeeder extends Seeder
 
         foreach($users as $user) {
 
-            for ($i = 1; $i <= 200; $i++) {
+            for ($i = 1; $i <= 50; $i++) {
 
 
                 $totalPrice = $this->prices[array_rand($this->prices)];
@@ -46,10 +48,11 @@ class OrderSeeder extends Seeder
                     'delivery_fee' => $delivery,
                     'paid' => $payable,
                     'due' => 0,
-                    'status' =>rand(0, 8),
+                    'status' =>rand(1, 8),
                 ]);
 
                 $this->saveItems($order);
+                $this->orderDetails($order);
             }
         }
     }
@@ -87,4 +90,23 @@ class OrderSeeder extends Seeder
             'additional_price' => $attribute->additional_price
         ]);
     }
+
+    private function orderDetails($order)
+    {
+        $first_name = ['Junayed', 'Atik', 'Sayed', 'Sajal', 'Turjo'];
+        $last_name = ['Faiaz', 'Rahman', 'Islam', 'Bhuiya', 'Shekh'];
+        $phone = [012222222222, 0222222222, 222222330000, 525555665555];
+
+        $address = UserAddress::pluck('id')->toArray();
+
+        OrderDetails::create([
+            'order_id' => $order->id,
+            'user_address_id' => $address[array_rand($address)],
+            'first_name'=> $first_name[array_rand($first_name)],
+            'last_name'=> $last_name[array_rand($last_name)],
+            'phone'=> $phone[array_rand($phone)],
+        ]);
+
+    }
+
 }

@@ -26,4 +26,23 @@ enum OrderStatus: int {
             $this::REFUNDED => 'Refunded'
         };
     }
+
+    public static function available_statuses()
+    {
+        return ['Pending', 'Processing', 'On the way', 'Shipped', 'Cancelled by Customer','Cancelled by Seller', 'Refunded'];
+    }
+
+    public static function findValue($status)
+    {
+        return match ($status) {
+            'Pending' => self::PENDING,
+            'Processing' => self::PROCESSING,
+            'On the way' => self::ONGOING,
+            'Shipped' => self::SHIPPED,
+            'Delivered' => self::DELIVERED,
+            'Cancelled by Customer' => self::CANCELLED_CUSTOMER,
+            'Cancelled by Seller' => self::CANCELLED_SELLER,
+            'Refunded' => self::REFUNDED,
+        };
+    }
 }

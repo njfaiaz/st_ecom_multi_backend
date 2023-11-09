@@ -10,11 +10,11 @@ class AddressResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'city_id' => CityResource::make($this->whenLoaded('city')),
-            'user_id' => UserResource::make($this->whenLoaded('user')),
+            'user_id' => $this->user->username,
+            'city_id' => $this->city->name,
             'address' => $this->address,
             'phone' => $this->phone,
-            'is_default' => AddressTypes::from($this->is_default)->title(),
+            'address_type' => AddressTypes::from($this->address_type)->title(),
         ];
     }
 }
