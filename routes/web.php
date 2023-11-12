@@ -9,6 +9,7 @@ use App\Http\Controllers\Seller\SellerBrandController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\SellerController;
@@ -90,6 +91,11 @@ Route::middleware('auth')->group(function(){
             Route::get('/', [OrderController::class, 'index'])->name('order');
             Route::get('{order}/details', [OrderController::class, 'show'])->name('orderShow');
             Route::get('{order}/invoice', [OrderController::class, 'invoice'])->name('invoice');
+        });
+
+        Route::prefix('setting')->group(function() {
+            Route::get('/', [SettingController::class, 'index'])->name('setting');
+            Route::post('update/{setting}', [SettingController::class, 'update'])->name('setting.update');
         });
     });
 
