@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             ReviewSeeder::class,
             SettingSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }
