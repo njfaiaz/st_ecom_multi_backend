@@ -53,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('cart/delete/{cartItem}', [CartController::class, 'delete']);
 
     Route::get('order', [OrderController::class, 'index']);
+    Route::post('order', [OrderController::class, 'order']);
 });
 
 
@@ -66,3 +67,8 @@ Route::any('{catchall}', [
         ], 404);
     }
 ])->where('catchall', '.*');
+
+
+
+
+
