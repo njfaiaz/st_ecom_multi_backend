@@ -54,6 +54,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::get('order', [OrderController::class, 'index']);
     Route::post('order', [OrderController::class, 'order']);
+    Route::get('order/{order}', [OrderController::class, 'show']);
+    Route::post('order/{order}/cancelled', [OrderController::class, 'orderCancel']);
 });
 
 

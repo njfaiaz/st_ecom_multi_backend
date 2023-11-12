@@ -143,4 +143,35 @@ class OrderController extends Controller
 
         return successResponse("Order created successfully");
     }
+
+    public function ItemsPriceCalculation($items)
+    {
+        $totalPrice = 0;
+        foreach ($items as $item) {
+            $totalPrice += $item->quantity * $item->discount;
+        }
+        return $totalPrice;
+    }
+
+    public function show(Order $order)
+    {
+        if (auth()->id() != $order->user_id) {
+            return errorResponse('Order not found!', 404);
+        }
+
+        $order->load('items.variants');
+
+        return apiResponse(OrderResource::make($order));
+    }
+
+    public function orderCancel(Order $order)
+    {
+        if (auth()->id() != $order->user_id) {
+            return errorResponse('Order not found!', 404);
+        }
+        $order->status = OrderStatus::CANCELLED_CUSTOMER;
+        $order->save();
+
+        return successResponse('Order Cancelled');
+    }
 }
